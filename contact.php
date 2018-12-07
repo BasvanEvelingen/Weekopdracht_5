@@ -29,7 +29,7 @@ if (isset($_POST['submit'])) {
                                 <div class="form-group">
                                 <textarea class="form-control" name="body" id="body" cols="50" rows="10"></textarea>
                                 </div>
-                                <input type="submit" name="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Submit">
+                                <input type="submit" name="submit" id="btn-login" class="btn btn-success" value="Submit">
                             </form>
                         </div>
                     </div> 

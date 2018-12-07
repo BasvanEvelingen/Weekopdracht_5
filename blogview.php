@@ -9,7 +9,6 @@ include "includes/navigation.php";
             <!-- Linker kant berichten -->
             <div class="col-md-8">
 <?php
-// paginatie
 $per_page = 10;
 if (isset($_GET['page'])) {
     $page = $_GET['page'];
@@ -49,7 +48,7 @@ if ($count < 1) {
                 <p><i class="far fa-clock"></i> <?php echo $post_date ?></p>
                 <hr>
                 <a href="post.php?p_id=<?php echo $post_id; ?>">
-                <img class="img-responsive" src="images/<?php echo $post_image; ?>" alt="">
+                    <img class="img-responsive" src="images/<?php echo $post_image; ?>" alt="">
                 </a>
                 <hr>
                 <p><?php echo $post_content ?></p>
@@ -63,7 +62,6 @@ if ($count < 1) {
         <hr>
         <ul class="pager">
 <?php
-// paginatie
 $number_list = array();
 for ($i = 1; $i <= $count; $i++) {
     if ($i == $page) {

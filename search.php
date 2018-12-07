@@ -9,7 +9,7 @@ include "includes/navigation.php";
 <?php
 if (isset($_POST['submit'])) {
     $search = $_POST['search'];
-    $query = "SELECT * FROM posts WHERE post_tags LIKE '%$search%' ";
+    $query = "SELECT * FROM posts WHERE post_content LIKE '%$search%' ";
     $search_query = mysqli_query($connection, $query);
     if (!$search_query) {
         die("Query mislukt." . mysqli_error($connection));
@@ -28,12 +28,12 @@ if (isset($_POST['submit'])) {
                 <h1 class="page-header">Blog Bericht</h1>
                 <h2><a href="#"><?php echo $post_title ?></a></h2>
                 <p class="lead">door <a href="index.php"><?php echo $post_author ?></a></p>
-                <p><span class="glyphicon glyphicon-time"></span> <?php echo $post_date ?></p>
+                <p><i class="far fa-clock"></i> <?php echo $post_date ?></p>
                 <hr>
                 <img class="img-responsive" src="images/<?php echo $post_image; ?>" alt="">
                 <hr>
                 <p><?php echo $post_content ?></p>
-                <a class="btn btn-success" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+                <a class="btn btn-warning" href="#">Lees verder <i class="fas fa-angle-double-right"></i></a>
                 <hr>
 <?php   }
     }

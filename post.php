@@ -38,7 +38,7 @@ if (isset($_GET['p_id'])) {
                 <h1 class="page-header">Berichten</h1>
                 <h2><a href="#"><?php echo $post_title ?></a></h2>
                 <p class="lead">door <a href="index.php"><?php echo $post_author ?></a></p>
-                <p><span class="glyphicon glyphicon-time"></span> <?php echo $post_date ?></p>
+                <p><i class="far fa-clock"></i> <?php echo $post_date ?></p>
                 <hr>
                 <img class="img-responsive" src="images/<?php echo $post_image; ?>" alt="">
                 <hr>
@@ -55,7 +55,7 @@ if (isset($_POST['create_comment'])) {
     $comment_content = $_POST['comment_content'];
     if (!empty($comment_author) && !empty($comment_email) && !empty($comment_content)) {
         $query = "INSERT INTO comments (comment_post_id, comment_author, comment_email, comment_content, comment_status,comment_date)";
-        $query .= "VALUES ($the_post_id ,'{$comment_author}', '{$comment_email}', '{$comment_content}', 'unapproved',now())";
+        $query .= "VALUES ($the_post_id ,'{$comment_author}', '{$comment_email}', '{$comment_content}', 'rejected',now())";
         $create_comment_query = mysqli_query($connection, $query);
         if (!$create_comment_query) {
             die('QUERY FAILED' . mysqli_error($connection));
@@ -64,23 +64,26 @@ if (isset($_POST['create_comment'])) {
         }
     }
 ?>
-                <!-- commentaar formulier -->
+                <!-- commentaar formulier , anoniem of niet -->
                 <div class="well">
-                    <h4>Leave a Comment:</h4>
-                    <form action="#" method="post" role="form">
-                        <div class="form-group">
-                         <label for="Author">Author</label>
-                          <input type="text" name="comment_author" class="form-control" name="comment_author">
-                        </div>
-                         <div class="form-group">
-                         <label for="Author">Email</label>
-                          <input type="email" name="comment_email" class="form-control" name="comment_email">
-                        </div>
-                        <div class="form-group">
-                            <label for="comment">Your Comment</label>
+                    <h4>Laat een bericht achter:</h4>
+                    <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST" role="form">
+                    <div class="form-group">
+                    <?php if (isset($_SESSION['user_role'])) {                      
+                        echo "<label for='Author'>Auteur</label>";
+                        echo "<input type='text' name='comment_author' class='form-control' name='comment_author'>";
+                        echo "</div>";
+                        echo "<div class='form-group'>";
+                        echo "<label for='Author'>Email</label>";
+                        echo "<input type='email' name='comment_email' class='form-control' name='comment_email'>";
+                        echo "</div>";
+                        echo "<div class='form-group'>";
+                    } ?>
+  
+                            <label for="comment">Uw bericht</label>
                             <textarea name="comment_content" class="form-control" rows="3"></textarea>
                         </div>
-                        <button type="submit" name="create_comment" class="btn btn-primary">Submit</button>
+                        <button type="submit" name="create_comment" class="btn btn-success">Verzend</button>
                     </form>
                 </div>
                 <hr>
@@ -98,11 +101,12 @@ while ($row = mysqli_fetch_array($select_comment_query)) {
     $comment_content = $row['comment_content'];
     $comment_author = $row['comment_author'];
 ?>
-                           <!-- media comment -->
+                           <!-- nu nog niet geimplementeerd plaatje bij comment -->
                 <div class="media">
+                    <!--
                     <a class="pull-left" href="#">
-                        <img class="media-object" src="http://placehold.it/64x64" alt="">
-                    </a>
+                        <img class="media-object" src="" alt="">
+                    </a> -->
                     <div class="media-body">
                         <h4 class="media-heading"><?php echo $comment_author; ?>
                             <small><?php echo $comment_date; ?></small>

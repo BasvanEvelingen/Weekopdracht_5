@@ -1,0 +1,28 @@
+
+body {
+    padding-top: 70px; /* voor fixed navigatie. */
+}
+footer {
+    margin: 50px 0;
+}
+.pager li .active_link {
+background: rgb(255, 255, 255) !important;
+}
+.form-control.pwd {
+background: rgb(230, 230, 230) !important;
+width: 30%;
+}
+#brandlogo {
+    color: #EEE;
+    font-family: Bitter,Robot,"Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 700;
+}
+h1,h2,h3,h4,h5,h6 {
+    font-family: Bitter,Roboto,"Helvetica Neue",sans-serif;
+    font-weight: 700;
+}
+.anim_timing {
+    animation-duration: 30s;
+    animation-delay: 1s;
+    animation-iteration-count: infinite;
+}

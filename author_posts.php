@@ -25,7 +25,7 @@ while ($row = mysqli_fetch_assoc($select_all_posts_query)) {
             <h1 class="page-header">Blog Berichten</h1>
             <h2><a href="#"><?php echo $post_title ?></a></h2>
             <p class="lead">Alle berichten van: <?php echo $post_author ?></p>
-            <p><span class="glyphicon glyphicon-time"></span> <?php echo $post_date ?></p>
+            <p><i class="far fa-clock"></i> <?php echo $post_date ?></p>
             <hr>
             <img class="img-responsive" src="images/<?php echo $post_image; ?>" alt="">
             <hr>
@@ -41,7 +41,7 @@ if (isset($_POST['create_comment'])) {
     $comment_content = $_POST['comment_content'];
     if (!empty($comment_author) && !empty($comment_email) && !empty($comment_content)) {
         $query = "INSERT INTO comments (comment_post_id, comment_author, comment_email, comment_content, comment_status,comment_date)";
-        $query .= "VALUES ($the_post_id ,'{$comment_author}', '{$comment_email}', '{$comment_content}', 'unapproved',now())";
+        $query .= "VALUES ($the_post_id ,'{$comment_author}', '{$comment_email}', '{$comment_content}', 'rejected',now())";
         $create_comment_query = mysqli_query($connection, $query);
         if (!$create_comment_query) {
             die('Query mislukt' . mysqli_error($connection));
@@ -58,6 +58,5 @@ if (isset($_POST['create_comment'])) {
             <!-- Zijmenu -->
             <?php include "includes/sidebar.php";?>
         </div>
-        <!-- /.row -->
         <hr>
 <?php include "includes/footer.php";?>
